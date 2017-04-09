@@ -13,9 +13,14 @@ Instructions:
 ```
 @powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 ```
-2. Run the following in cmd.exe:
+2. Use choco to install all the dev tools:
 ```
-choco install -y 7zip cmake git python2 vcredist2015 windows-sdk-10
+C:\Windows\system32>choco install -y 7zip cmake git python2 vcredist2015 windows-sdk-10
+Chocolatey v0.10.5
+Installing the following packages:
+7zip;cmake;git;python2;vcredist2015;windows-sdk-10
+...
+
 ```
 3. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
 4. Put C:\Program Files\Vim on PATH.
