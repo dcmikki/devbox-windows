@@ -110,7 +110,7 @@ $ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
 The .vimrc is required because it describes all the plugins to be installed by Vundle.
 
-8. Run Vim using Vundle to install all my plugins:
+8. Using cmd.exe running as Administrator, run Vim using Vundle to install all my plugins:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
@@ -119,8 +119,10 @@ C:\Windows\system32>vim +PluginInstall +qall
 
 # Vim will run here and probably prompt for some user input.
 # My .vimrc isn't cross platform yet, so there may be some errors, but for now, they can safely be ignored.
+# After clearing those, Vundle will install every plugin specified in the .vimrc.
+# I assume it just uses git to clone everything to the correct directories.
 ```
 Note: YouCompleteMe can take 5+ minutes to install; I believe it uses many submodules.
 
-9. Build YCM.
+9. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows).
 10. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
