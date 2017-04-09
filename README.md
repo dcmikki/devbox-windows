@@ -124,5 +124,5 @@ C:\Windows\system32>vim +PluginInstall +qall
 ```
 Note: YouCompleteMe can take 5+ minutes to install; I believe it uses many submodules.
 
-9. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows). Unfortunately this involves some heavy duty dependencies, including a Visual Studio install for all the dev tools.
+9. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows). Unfortunately this involves a heavy duty Visual Studio installation, required for the dev tools to build YCM. Using just the 'Desktop Development with C++' option, it clocks in at a whopping 5.1GB.
 10. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
