@@ -74,7 +74,7 @@ chine:AMD64   msvcrt.lib  user32.lib  /nodefaultlib:lua53.lib  /STACK:8388608  /
 nodefaultlib:python27.lib /nodefaultlib:python36.lib   "C:\TCL\lib\tclstub86.lib
 " WSock32.lib /PDB:vim.pdb -debug
 ```
-7. Open the Git shell and run the following:
+7. Open the Git shell and setup Vundle, get my dotfiles, then copy my vimrc:
 ```
 cygwin@cygwin-PC MINGW64 ~
 $ mkdir -p .vim/bundle
@@ -108,3 +108,5 @@ $ cp dotfiles/vim/
 cygwin@cygwin-PC MINGW64 ~/dev
 $ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
+The vimrc is required because it describes all the plugins to be installed by Vundle.
+8. Next instruction.
