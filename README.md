@@ -118,11 +118,11 @@ Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 C:\Windows\system32>vim +PluginInstall +qall
 
 # Vim will run here and probably prompt for some user input.
-# My .vimrc isn't cross platform yet, so there may be some errors, but for now, they can safely be ignored.
+# My .vimrc isn't cross platform yet, so there may be some errors; for now, they can be ignored.
 # After clearing those, Vundle will install every plugin specified in the .vimrc.
 # I assume it just uses git to clone everything to the correct directories.
 ```
 Note: YouCompleteMe can take 5+ minutes to install; I believe it uses many submodules.
 
-9. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows).
+9. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows). Unfortunately this involves some heavy duty dependencies, including a Visual Studio install for all the dev tools.
 10. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
