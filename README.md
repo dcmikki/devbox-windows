@@ -20,11 +20,33 @@ Chocolatey v0.10.5
 Installing the following packages:
 7zip;cmake;git;python2;vcredist2015;windows-sdk-10
 ...
+Chocolatey installed 19/19 packages. 0 packages failed.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
 
+Installed:
+ - cmake v3.7.2
+ - python2 v2.7.13
+ - dotnet4.5 v4.5.20120822
+ - kb3033929 v1.0.2
+ - 7zip v16.4.0.20170403
+ - chocolatey-windowsupdate.extension v1.0.2
+ - cmake.install v3.7.2
+ - vcredist140 v14.10.25008.0
+ - git v2.12.2.2
+ - kb2999226 v1.0.20161201
+ - kb2919355 v1.0.20160915
+ - chocolatey-core.extension v1.2.0
+ - kb2919442 v1.0.20160915
+ - 7zip.install v16.4.0.20170403
+ - vcredist2015 v14.0.24215.20170201
+ - windows-sdk-10 v10.1.10586.15
+ - kb3035131 v1.0.0
+ - windows-sdk-10.1 v10.1.10586.15
+ - git.install v2.12.2.2
 ```
 3. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
 4. Put C:\Program Files\Vim on PATH.
-5. Open cmd.exe and make sure vim will run. You should see output similar to the following:
+5. Open cmd.exe and make sure Vim will run. You should see output similar to the following:
 ```
 C:\Users\cygwin>vim --version
 VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Apr  7 2017 22:45:12)
