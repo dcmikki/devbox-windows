@@ -9,12 +9,17 @@ This section describes how to get Vim running with YouCompleteMe for auto comple
 
 Instructions:
 
-1. Download and install the [64-bit version of Git](https://git-scm.com/download/win).
-2. Download and install the [64-bit version of Python](https://www.python.org/downloads/windows).
-3. Download and install the [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-gb/download/confirmation.aspx?id=48145).
-4. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
-5. Put C:\Program Files\Vim on PATH.
-6. Open cmd.exe and make sure vim will run. You should see output similar to the following:
+1. Install [Chocolatey](https://chocolatey.org/), the package manager for Windows. For convenience, here is the command to run from cmd.exe (needs to be in Administrative mode):
+```
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```
+2. Run the following in cmd.exe:
+```
+choco install -y 7zip cmake git python2 vcredist2015 windows-sdk-10
+```
+3. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
+4. Put C:\Program Files\Vim on PATH.
+5. Open cmd.exe and make sure vim will run. You should see output similar to the following:
 ```
 C:\Users\cygwin>vim --version
 VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Apr  7 2017 22:45:12)
@@ -74,7 +79,7 @@ chine:AMD64   msvcrt.lib  user32.lib  /nodefaultlib:lua53.lib  /STACK:8388608  /
 nodefaultlib:python27.lib /nodefaultlib:python36.lib   "C:\TCL\lib\tclstub86.lib
 " WSock32.lib /PDB:vim.pdb -debug
 ```
-7. Open the Git shell and setup Vundle, get my dotfiles, then copy my .vimrc:
+6. Open the Git shell and setup Vundle, get my dotfiles, then copy my .vimrc:
 ```
 cygwin@cygwin-PC MINGW64 ~
 $ mkdir -p .vim/bundle
@@ -110,7 +115,7 @@ $ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
 The .vimrc is required because it describes all the plugins to be installed by Vundle.
 
-8. Using cmd.exe running as Administrator, run Vim using Vundle to install all my plugins:
+7. Using cmd.exe running as Administrator, run Vim using Vundle to install all my plugins:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
@@ -124,5 +129,5 @@ C:\Windows\system32>vim +PluginInstall +qall
 ```
 Note: YouCompleteMe can take 5+ minutes to install; I believe it uses many submodules.
 
-9. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows). Unfortunately this involves a heavy duty Visual Studio installation, required for the dev tools to build YCM. Using just the 'Desktop Development with C++' option, it clocks in at a whopping 5.1GB.
-10. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
+8. Build YCM as per the [official documentation](https://github.com/Valloric/YouCompleteMe#windows). Unfortunately this involves a heavy duty Visual Studio installation, required for the dev tools to build YCM. Using just the 'Desktop Development with C++' option, it clocks in at a whopping 5.1GB. I suspect it may be possible to only install the Windows 10 SDK to get it to work.
+9. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
