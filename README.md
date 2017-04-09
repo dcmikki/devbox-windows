@@ -9,11 +9,12 @@ This section describes how to get Vim running with YouCompleteMe for auto comple
 
 Instructions:
 
-1. Download and install the [64-bit version of Python](https://www.python.org/downloads/windows).
-2. Download and install the [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-gb/download/confirmation.aspx?id=48145).
-3. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
-4. Put C:\Program Files\Vim on PATH.
-5. Open cmd.exe and make sure vim will run. You should see output similar to the following:
+1. Download and install the [64-bit version of Git](https://git-scm.com/download/win).
+2. Download and install the [64-bit version of Python](https://www.python.org/downloads/windows).
+3. Download and install the [Visual C++ Redistributable for Visual Studio 2015](https://www.microsoft.com/en-gb/download/confirmation.aspx?id=48145).
+4. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
+5. Put C:\Program Files\Vim on PATH.
+6. Open cmd.exe and make sure vim will run. You should see output similar to the following:
 ```
 C:\Users\cygwin>vim --version
 VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Apr  7 2017 22:45:12)
@@ -72,4 +73,38 @@ el32.lib advapi32.lib shell32.lib gdi32.lib  comdlg32.lib ole32.lib uuid.lib /ma
 chine:AMD64   msvcrt.lib  user32.lib  /nodefaultlib:lua53.lib  /STACK:8388608  /
 nodefaultlib:python27.lib /nodefaultlib:python36.lib   "C:\TCL\lib\tclstub86.lib
 " WSock32.lib /PDB:vim.pdb -debug
+```
+7. Open the Git shell and run the following:
+```
+cygwin@cygwin-PC MINGW64 ~
+$ mkdir -p .vim/bundle
+
+cygwin@cygwin-PC MINGW64 ~
+$ cd .vim/bundle/
+
+cygwin@cygwin-PC MINGW64 ~/.vim/bundle
+$ git clone https://github.com/VundleVim/Vundle.vim.git
+Cloning into 'Vundle.vim'...
+remote: Counting objects: 3117, done.
+remote: Total 3117 (delta 0), reused 0 (delta 0), pack-reused 3116
+Receiving objects: 100% (3117/3117), 928.87 KiB | 1.23 MiB/s, done.
+Resolving deltas: 100% (1095/1095), done.
+
+cygwin@cygwin-PC MINGW64 ~/.vim/bundle
+$ cd ~/dev/
+
+cygwin@cygwin-PC MINGW64 ~/dev
+$ git clone https://github.com/jacderida/dotfiles.git
+Cloning into 'dotfiles'...
+remote: Counting objects: 2398, done.
+remote: Total 2398 (delta 0), reused 0 (delta 0), pack-reused 2398
+Receiving objects: 100% (2398/2398), 3.04 MiB | 648.00 KiB/s, done.
+Resolving deltas: 100% (1426/1426), done.
+
+cygwin@cygwin-PC MINGW64 ~/dev
+$ cp dotfiles/vim/
+.gvimrc    .vimrc     bootstrap  sh.vim
+
+cygwin@cygwin-PC MINGW64 ~/dev
+$ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
