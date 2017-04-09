@@ -109,4 +109,5 @@ cygwin@cygwin-PC MINGW64 ~/dev
 $ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
 The vimrc is required because it describes all the plugins to be installed by Vundle.
+
 8. Next instruction.
