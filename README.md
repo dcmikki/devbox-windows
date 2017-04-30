@@ -136,10 +136,6 @@ Receiving objects: 100% (2398/2398), 3.04 MiB | 648.00 KiB/s, done.
 Resolving deltas: 100% (1426/1426), done.
 
 cygwin@cygwin-PC MINGW64 ~/dev
-$ cp dotfiles/vim/
-.gvimrc    .vimrc     bootstrap  sh.vim
-
-cygwin@cygwin-PC MINGW64 ~/dev
 $ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
 The .vimrc is required because it describes all the plugins to be installed by Vundle.
