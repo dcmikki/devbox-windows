@@ -44,10 +44,11 @@ Installed:
  - windows-sdk-10.1 v10.1.10586.15
  - git.install v2.12.2.2
 ```
-3. Download and install the [Visual C++ 2015 Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools).
-4. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
-5. Put C:\Program Files\Vim on PATH.
-6. Open cmd.exe and make sure Vim will run. You should see output similar to the following:
+3. Unfortunately the cmake package for chocolatey doesn't put cmake on the path. Add it manually.
+4. Download and install the [Visual C++ 2015 Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools).
+5. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
+6. Put C:\Program Files\Vim on PATH.
+7. Open cmd.exe and make sure Vim will run. You should see output similar to the following:
 ```
 C:\Users\cygwin>vim --version
 VIM - Vi IMproved 8.0 (2016 Sep 12, compiled Apr  7 2017 22:45:12)
@@ -107,7 +108,7 @@ chine:AMD64   msvcrt.lib  user32.lib  /nodefaultlib:lua53.lib  /STACK:8388608  /
 nodefaultlib:python27.lib /nodefaultlib:python36.lib   "C:\TCL\lib\tclstub86.lib
 " WSock32.lib /PDB:vim.pdb -debug
 ```
-7. Open the Git shell and setup Vundle, get my dotfiles, then copy my .vimrc:
+8. Open the Git shell and setup Vundle, get my dotfiles, then copy my .vimrc:
 ```
 cygwin@cygwin-PC MINGW64 ~
 $ mkdir -p .vim/bundle
@@ -143,7 +144,7 @@ $ cp dotfiles/vim/.vimrc ~/_vimrc
 ```
 The .vimrc is required because it describes all the plugins to be installed by Vundle.
 
-8. Using cmd.exe running as Administrator, run Vim using Vundle to install all my plugins:
+9. Using cmd.exe running as Administrator, run Vim using Vundle to install all my plugins:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
@@ -157,9 +158,9 @@ C:\Windows\system32>vim +PluginInstall +qall
 ```
 Note: YouCompleteMe can take 5+ minutes to install; I believe it uses many submodules.
 
-9. Build YCM:
+10. Build YCM:
 * After installing the C++ build tools, the start menu will have a 'Visual C++ Build Tools' entry. Look under there and open the command prompt that corresponds to the current platform, e.g. x64. This runs a command prompt with all the paths and variables that need to be declared for compiling C++ projects.
 * From that command prompt, navigate to %USERPROFILE%\.vim\bundle\YouCompleteMe.
 * Run install.py --msvc 14. This should run through the compilation successfully.
 
-10. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
+11. Pick some Windows compatible fonts from [nerd-fonts](https://github.com/ryanoasis/nerd-fonts/) and install them.
