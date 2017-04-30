@@ -44,10 +44,10 @@ Installed:
  - windows-sdk-10.1 v10.1.10586.15
  - git.install v2.12.2.2
 ```
-3. Unfortunately the cmake package for chocolatey doesn't put cmake on the path. Add it manually.
+3. Unfortunately the cmake package for chocolatey doesn't add cmake to PATH. Add it manually.
 4. Download and install the [Visual C++ 2015 Build Tools](http://landinghub.visualstudio.com/visual-cpp-build-tools).
 5. Download and install a [64-bit build of Vim](https://tuxproject.de/projects/vim/). This guide will assume the installation directory is C:\Program Files\Vim.
-6. Put C:\Program Files\Vim on PATH.
+6. Add C:\Program Files\Vim to PATH.
 7. Open cmd.exe and make sure Vim will run. You should see output similar to the following:
 ```
 C:\Users\cygwin>vim --version
