@@ -12,6 +12,8 @@ The Windows package manager [Chocolatey](https://chocolatey.org/) will be used a
 
 ## Git Bash for Windows Setup
 
+### Install Environment
+
 First up, install [Git Bash](https://git-for-windows.github.io/) and [ConEmu](https://conemu.github.io/), an improved console emulator. Both of those are installed as part of the [Cmder](http://cmder.net/) package, however, cmder continues to run a Windows-based shell, whereas my preference is for the emulated Bash shell provided by Git for Windows. Run cmd.exe as Administrator and install both using choco.
 
 ```
@@ -74,6 +76,38 @@ C:\Windows\system32>
 ```
 
 With these installed, cmd.exe can happily be discarded. Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. There's a good range of pre-configured colour schemes to select from.
+
+### Configure Bash Shell
+
+Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
+```
+cygwin@cygwin-PC MINGW64 ~
+$ mkdir .ssh
+
+cygwin@cygwin-PC MINGW64 ~
+$ cp /E/.ssh/id_rsa .ssh
+
+cygwin@cygwin-PC MINGW64 ~
+$ chmod 0400 ~/.ssh/id_rsa
+```
+
+We should now be able to clone my dotfiles repository using SSH:
+```
+cygwin@cygwin-PC MINGW64 ~
+$ mkdir dev && cd dev
+
+cygwin@cygwin-PC MINGW64 ~/dev
+$ git clone git@github.com:jacderida/dotfiles.git
+Cloning into 'dotfiles'...
+The authenticity of host 'github.com (192.30.253.112)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
+remote: Counting objects: 2410, done.
+Receiving objects:  88% (2121/2410), 2.65 MiB | 555.00 KiB/s   2410eceiving objects:  86% (2073/2410), 2.65 MiB | 555.00 KiB/s
+Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
+Resolving deltas: 100% (1435/1435), done.
+```
 
 ## Vim with YouCompleteMe
 
