@@ -1,9 +1,9 @@
-# devbox-windows
+# Windows Development Environment
 Intended to define my personal development environment for Windows.
 
-I'll occasionally have to use Windows for projects at work, so I also want a Windows machine with some dev tools. This setup may be automated with something in the future, but for now it will just be some notes on what I installed and how I configured it.
+I'll occasionally have to use Windows for projects at work, so I also want a Windows machine with some dev tools and customisations. This setup may be automated with something in the future, but for now it will just be some notes on what I installed and how I configured it.
 
-The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects at work. The best option otherwise is to get a nice Git Bash setup running.
+The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects. The best option otherwise is to get a nice Git Bash setup running.
 
 The Windows package manager [Chocolatey](https://chocolatey.org/) will be used at various points, so install it now. Run the following from cmd.exe in administrative mode:
 ```
@@ -147,7 +147,23 @@ file:C:/Users/cygwin/.gitconfig pager.diff=
 ...
 ```
 
-The output is truncated here, but we can clearly see it's reading my custom settings.
+The output is truncated here, but clearly it's reading my custom settings.
+
+#### Bash Setup
+
+Similar to Git, it's simply a case of linking in the bashrc, which seems to be quite cross platform for now. So run cmd.exe as Administrator again, and link in the bashrc.
+```
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32>cd c:\Users\cygwin
+
+c:\Users\cygwin>mklink .bashrc c:\Users\cygwin\dev\dotfiles\bash\.bashrc
+symbolic link created for .bashrc <<===>> c:\Users\cygwin\dev\dotfiles\bash\.bas
+hrc
+
+c:\Users\cygwin>
+```
 
 ## Vim with YouCompleteMe
 
