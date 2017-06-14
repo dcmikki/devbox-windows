@@ -3,6 +3,17 @@ Intended to define my personal development environment for Windows.
 
 I'll occasionally have to use Windows for projects at work, so I also want a Windows machine with some dev tools. This setup may be automated with something in the future, but for now it will just be some notes on what I installed and how I configured it.
 
+The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects at work. The best option otherwise is to get a nice Git Bash setup running.
+
+The Windows package manager [Chocolatey](https://chocolatey.org/) will be used at various points, so install it now. Run the following from cmd.exe in administrative mode:
+```
+@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```
+
+## Git Bash for Windows Setup
+
+
+
 ## Vim with YouCompleteMe
 
 This section describes how to get Vim running with YouCompleteMe for auto completion. YouCompleteMe requires 64-bit versions of Vim and Python. The regular Vim installation on Windows uses a 32-bit binary, even for a 64-bit Windows installation. For some reason, the official installation stream doesn't bother building a 64-bit binary and just ships the 32-bit version. Apparently this doesn't bother most Windows users. Oh well. For me, it means getting a 64-bit build of Vim from somewhere else. Some development tools will also be required for building YouCompleteMe.
