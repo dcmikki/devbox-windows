@@ -75,9 +75,11 @@ Chocolatey installed 4/4 packages.
 C:\Windows\system32>
 ```
 
-With these installed, cmd.exe can happily be discarded. Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. There's a good range of pre-configured colour schemes to select from.
+With these installed, cmd.exe can happily be discarded (for the vast majority of things). Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. There's a good range of pre-configured colour schemes to select from.
 
-### Configure Bash Shell
+### Configure Bash Environment
+
+#### Git Setup
 
 Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
 ```
@@ -108,6 +110,44 @@ Receiving objects:  88% (2121/2410), 2.65 MiB | 555.00 KiB/s   2410eceiving obje
 Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
 Resolving deltas: 100% (1435/1435), done.
 ```
+
+The .gitconfig should now be installed by linking it from the dotfiles repository to where msysgit expects it to be. Sadly, symlinks in Windows can only be made using cmd.exe. For some reason, the command `mklink` isn't an actual standalone program, but some kind of extension to cmd.exe. This seems kind of bizarre, since it also makes the command unavailable to things like Powershell, but hey ho. Even if you're creating the link in your own profile directory, it seems you still need to be Administrator to run this command, so run cmd.exe as Administrator.
+```
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32>cd c:\Users\cygwin
+
+c:\Users\cygwin>mklink .gitconfig c:\Users\cygwin\dev\dotfiles\git\.gitconfig
+symbolic link created for .gitconfig <<===>> c:\Users\cygwin\dev\dotfiles\git\.gitconfig
+
+c:\Users\cygwin>
+```
+
+Start a new instance of ConEmu and verify this is working as intended:
+```
+cygwin@cygwin-PC MINGW64 ~
+$ git config --list --show-origin
+file:"C:\\ProgramData/Git/config"       core.symlinks=false
+file:"C:\\ProgramData/Git/config"       core.autocrlf=true
+file:"C:\\ProgramData/Git/config"       core.fscache=true
+file:"C:\\ProgramData/Git/config"       color.diff=auto
+file:"C:\\ProgramData/Git/config"       color.status=auto
+file:"C:\\ProgramData/Git/config"       color.branch=auto
+file:"C:\\ProgramData/Git/config"       color.interactive=true
+file:"C:\\ProgramData/Git/config"       help.format=html
+file:"C:\\ProgramData/Git/config"       rebase.autosquash=true
+file:"C:\\Program Files\\Git\\mingw64/etc/gitconfig"    http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+file:"C:\\Program Files\\Git\\mingw64/etc/gitconfig"    diff.astextplain.textconv=astextplain
+file:"C:\\Program Files\\Git\\mingw64/etc/gitconfig"    credential.helper=manager
+file:C:/Users/cygwin/.gitconfig user.name=Chris O'Neil
+file:C:/Users/cygwin/.gitconfig user.email=chris.oneil@gmail.com
+file:C:/Users/cygwin/.gitconfig diff.external=git_diff_wrapper
+file:C:/Users/cygwin/.gitconfig pager.diff=
+...
+```
+
+The output is truncated here, but we can clearly see it's reading my custom settings.
 
 ## Vim with YouCompleteMe
 
