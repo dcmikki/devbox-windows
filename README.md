@@ -12,7 +12,68 @@ The Windows package manager [Chocolatey](https://chocolatey.org/) will be used a
 
 ## Git Bash for Windows Setup
 
+First up, install [Git Bash](https://git-for-windows.github.io/) and [ConEmu](https://conemu.github.io/), an improved console emulator. Both of those are installed as part of the [Cmder](http://cmder.net/) package, however, cmder continues to run a Windows-based shell, whereas my preference is for the emulated Bash shell provided by Git for Windows. Run cmd.exe as Administrator and install both using choco.
 
+```
+C:\Windows\system32>choco install -y conemu git
+Chocolatey v0.10.7
+Installing the following packages:
+conemu;git
+By installing you accept licenses for the packages.
+Progress: Downloading ConEmu 17.6.5.0... 100%
+
+ConEmu v17.6.5.0 [Approved]
+conemu package files install completed. Performing other installation steps.
+Downloading ConEmu 64 bit
+  from 'https://github.com/Maximus5/ConEmu/releases/download/v17.06.05/ConEmuSet
+up.170605.exe'
+Progress: 100% - Completed download of C:\Users\cygwin\AppData\Local\Temp\chocol
+atey\ConEmu\17.6.5.0\ConEmuSetup.170605.exe (5.1 MB).
+Download of ConEmuSetup.170605.exe (5.1 MB) completed.
+Hashes match.
+Installing ConEmu...
+ConEmu has been installed.
+  conemu may be able to be automatically uninstalled.
+ The install of conemu was successful.
+  Software installed as 'exe', install location is likely default.
+Progress: Downloading git.install 2.13.0... 100%
+Progress: Downloading chocolatey-core.extension 1.3.1... 100%
+Progress: Downloading git 2.13.0... 100%
+
+chocolatey-core.extension v1.3.1 [Approved]
+chocolatey-core.extension package files install completed. Performing other inst
+allation steps.
+ Installed/updated chocolatey-core extensions.
+ The install of chocolatey-core.extension was successful.
+  Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-core'
+
+git.install v2.13.0 [Approved]
+git.install package files install completed. Performing other installation steps
+.
+Installing 64 bit version
+Installing git.install...
+git.install has been installed.
+WARNING: Can't find git.install install location
+  git.install can be automatically uninstalled.
+Environment Vars (like PATH) have changed. Close/reopen your shell to
+ see the changes (or in powershell/cmd.exe just type `refreshenv`).
+ ShimGen has successfully created a shim for Git-2.13.0-32-bit.exe
+ The install of git.install was successful.
+  Software installed to 'C:\Program Files\Git\'
+
+git v2.13.0 [Approved]
+git package files install completed. Performing other installation steps.
+ The install of git was successful.
+  Software install location not explicitly set, could be in package or
+  default install location if installer.
+
+Chocolatey installed 4/4 packages.
+ See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
+
+C:\Windows\system32>
+```
+
+With these installed, cmd.exe can happily be discarded. Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. There's a good range of pre-configured colour schemes to select from.
 
 ## Vim with YouCompleteMe
 
