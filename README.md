@@ -176,9 +176,13 @@ C:\Windows\system32>cd c:\Users\cygwin
 c:\Users\cygwin>mklink .bashrc c:\Users\cygwin\dev\dotfiles\bash\.bashrc
 symbolic link created for .bashrc <<===>> c:\Users\cygwin\dev\dotfiles\bash\.bas
 hrc
-
-c:\Users\cygwin>
 ```
+
+#### Font Setup
+
+Grab a font from [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts). It obviously needs to be a Windows compatible font. [Source Code Pro](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Semibold/complete/Sauce%20Code%20Pro%20Semibold%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf) at 14pt looks pretty good. Once installed, change the settings in ConEmu to use that font.
+
+Font installation could be [automated](https://superuser.com/questions/201896/how-do-i-install-a-font-from-the-windows-command-prompt) quite easily.
 
 ## Vim with YouCompleteMe
 
