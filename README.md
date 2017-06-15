@@ -183,3 +183,22 @@ hrc
 Grab a font from [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts). It obviously needs to be a Windows compatible font. [Source Code Pro](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Semibold/complete/Sauce%20Code%20Pro%20Semibold%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf) at 14pt looks pretty good. Once installed, change the settings in ConEmu to use that font.
 
 Font installation could be [automated](https://superuser.com/questions/201896/how-do-i-install-a-font-from-the-windows-command-prompt) quite easily.
+
+## Vim
+
+Vim is my main text editor. On my main development machines I run quite a lot of plugins, but they're all managed using Vundle, so it should be pretty easy to get all that installed on Windows. I was able to get it all running, but performance was really bad, to the point where it was unusable. I stopped loading a few plugins and ended up with a setup that would run on the version of Vim that comes with msysgit, but it still took about 5 - 10 seconds to open an instance, and it seemed to take forever to open new files too.
+
+With that said, I'm now going to produce a minimalist Vim setup that will keep it nice and snappy to be used with msysgit.
+
+The first thing to do is get Vundle setup:
+```
+cygwin@cygwin-PC » ~/dev $ cd ~
+cygwin@cygwin-PC » ~ $ mkdir -p .vim/bundle
+cygwin@cygwin-PC » ~ $ cd .vim/bundle/
+cygwin@cygwin-PC » ~/.vim/bundle $ git clone https://github.com/VundleVim/Vundle.vim.git
+Cloning into 'Vundle.vim'...
+remote: Counting objects: 3128, done.
+Receiving objects:  79% (2472/3128), 852.01 KiB | 191.00 KiB/s   28eceiving objects:  78% (2440/3128), 852.01 KiB | 191.00 KiB/s
+Receiving objects: 100% (3128/3128), 931.67 KiB | 196.00 KiB/s, done.
+Resolving deltas: 100% (1101/1101), done.
+```
