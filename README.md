@@ -111,7 +111,9 @@ Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
 Resolving deltas: 100% (1435/1435), done.
 ```
 
-The .gitconfig should now be installed by linking it from the dotfiles repository to where msysgit expects it to be. Sadly, symlinks in Windows can only be made using cmd.exe. For some reason, the command `mklink` isn't an actual standalone program, but some kind of extension to cmd.exe. This seems kind of bizarre, since it also makes the command unavailable to things like Powershell, but hey ho. Even if you're creating the link in your own profile directory, it seems you still need to be Administrator to run this command, so run cmd.exe as Administrator.
+The .gitconfig should now be installed by linking it from the dotfiles repository to where msysgit expects it to be. The .githelpers file should also be installed in the same manner, and a wrapper script for using vimdiff on the terminal needs to go into `%USERPROFILE%\.local\bin`.
+
+Sadly, symlinks in Windows can only be made using cmd.exe. For some reason, the command `mklink` isn't an actual standalone program, but some kind of extension to cmd.exe. This seems kind of bizarre, since it also makes the command unavailable to things like Powershell, but hey ho. Even if you're creating the link in your own profile directory, it seems you still need to be Administrator to run this command, so run cmd.exe as Administrator.
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
@@ -121,7 +123,20 @@ C:\Windows\system32>cd c:\Users\cygwin
 c:\Users\cygwin>mklink .gitconfig c:\Users\cygwin\dev\dotfiles\git\.gitconfig
 symbolic link created for .gitconfig <<===>> c:\Users\cygwin\dev\dotfiles\git\.gitconfig
 
-c:\Users\cygwin>
+C:\Users\cygwin>mkdir -p .local\bin
+
+C:\Users\cygwin>cd .local\bin
+
+c:\Users\cygwin\.local\bin>mklink git_diff_wrapper c:\Users\cygwin\dev\dotfiles\
+git\git_diff_wrapper
+symbolic link created for git_diff_wrapper <<===>> c:\Users\cygwin\dev\dotfiles\
+git\git_diff_wrapper
+
+c:\Users\cygwin\.local\bin>cd ..\..
+
+c:\Users\cygwin>mklink .githelpers c:\Users\cygwin\dev\dotfiles\git\.githelpers
+symbolic link created for .githelpers <<===>> c:\Users\cygwin\dev\dotfiles\git\.
+githelpers
 ```
 
 Start a new instance of ConEmu and verify this is working as intended:
