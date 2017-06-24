@@ -110,12 +110,6 @@ symbolic link created for C:\Users\cygwin\.bashrc <<===>> C:\Users\cygwin\dev\do
 
 Start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
 
-#### Font Setup
-
-Grab a font from [Nerd Fonts](https://github.com/ryanoasis/nerd-fonts). It obviously needs to be a Windows compatible font. [Source Code Pro](https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/SourceCodePro/Semibold/complete/Sauce%20Code%20Pro%20Semibold%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf) at 14pt looks pretty good. Once installed, change the settings in ConEmu to use that font.
-
-Font installation could be [automated](https://superuser.com/questions/201896/how-do-i-install-a-font-from-the-windows-command-prompt) quite easily.
-
 ## Vim
 
 Vim is my main text editor. On my main development machines I run quite a lot of plugins, but they're all managed using Vundle, so it should be pretty easy to get all that installed on Windows. I was able to get it all running, but performance was really bad, to the point where it was unusable. I stopped loading a few plugins and ended up with a setup that would run on the version of Vim that comes with msysgit, but it still took about 5 - 10 seconds to open an instance, and it seemed to take forever to open new files too.
