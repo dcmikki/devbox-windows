@@ -1,7 +1,7 @@
 # Windows Development Environment
 Intended to define my personal development environment for Windows.
 
-I'll occasionally have to use Windows for projects at work, so I also want a Windows machine with some dev tools and customisations. This setup may be automated with something in the future, but for now it will just be some notes on what I installed and how I configured it.
+I'll occasionally have to use Windows for projects at work, so I also want a Windows machine with some dev tools and customisations. This setup may be completely automated with something in the future, but for now it's a few batch files that need to be run in a certain order.
 
 The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects. The best option otherwise is to get a nice Git Bash setup running.
 
@@ -9,12 +9,12 @@ The goal is to get something on Windows that's a very decent approximation of my
 
 ### Install Environment
 
-First up, on the target machine, download the initial-bootstrap.bat file in this repository and save it to some location. Then run cmd.exe as Administrator and run that script:
+First up, on the target machine, download the initial-bootstrap.bat file in this repository and save it to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 
-C:\Windows\system32>cd c:\Users\cygwin
+C:\Windows\system32>cd %USERPROFILE%
 
 c:\Users\cygwin>initial-bootstrap.bat
 
