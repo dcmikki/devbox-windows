@@ -5,77 +5,50 @@ I'll occasionally have to use Windows for projects at work, so I also want a Win
 
 The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects. The best option otherwise is to get a nice Git Bash setup running.
 
-The Windows package manager [Chocolatey](https://chocolatey.org/) will be used at various points, so install it now. Run the following from cmd.exe in administrative mode:
-```
-@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-```
-
 ## Git Bash for Windows Setup
 
 ### Install Environment
 
-First up, install [Git Bash](https://git-for-windows.github.io/) and [ConEmu](https://conemu.github.io/), an improved console emulator. Both of those are installed as part of the [Cmder](http://cmder.net/) package, however, cmder continues to run a Windows-based shell, whereas my preference is for the emulated Bash shell provided by Git for Windows. Run cmd.exe as Administrator and install both using choco.
-
+First up, on the target machine, download the initial-bootstrap.bat file in this repository and save it to some location. Then run cmd.exe as Administrator and run that script:
 ```
-C:\Windows\system32>choco install -y conemu git
-Chocolatey v0.10.7
-Installing the following packages:
-conemu;git
-By installing you accept licenses for the packages.
-Progress: Downloading ConEmu 17.6.5.0... 100%
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 
-ConEmu v17.6.5.0 [Approved]
-conemu package files install completed. Performing other installation steps.
-Downloading ConEmu 64 bit
-  from 'https://github.com/Maximus5/ConEmu/releases/download/v17.06.05/ConEmuSet
-up.170605.exe'
-Progress: 100% - Completed download of C:\Users\cygwin\AppData\Local\Temp\chocol
-atey\ConEmu\17.6.5.0\ConEmuSetup.170605.exe (5.1 MB).
-Download of ConEmuSetup.170605.exe (5.1 MB) completed.
-Hashes match.
-Installing ConEmu...
-ConEmu has been installed.
-  conemu may be able to be automatically uninstalled.
- The install of conemu was successful.
-  Software installed as 'exe', install location is likely default.
-Progress: Downloading git.install 2.13.0... 100%
-Progress: Downloading chocolatey-core.extension 1.3.1... 100%
-Progress: Downloading git 2.13.0... 100%
+C:\Windows\system32>cd c:\Users\cygwin
 
-chocolatey-core.extension v1.3.1 [Approved]
-chocolatey-core.extension package files install completed. Performing other inst
-allation steps.
- Installed/updated chocolatey-core extensions.
- The install of chocolatey-core.extension was successful.
-  Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-core'
+c:\Users\cygwin>initial-bootstrap.bat
 
-git.install v2.13.0 [Approved]
-git.install package files install completed. Performing other installation steps
-.
-Installing 64 bit version
-Installing git.install...
-git.install has been installed.
-WARNING: Can't find git.install install location
-  git.install can be automatically uninstalled.
-Environment Vars (like PATH) have changed. Close/reopen your shell to
- see the changes (or in powershell/cmd.exe just type `refreshenv`).
- ShimGen has successfully created a shim for Git-2.13.0-32-bit.exe
- The install of git.install was successful.
-  Software installed to 'C:\Program Files\Git\'
+Mode                LastWriteTime     Length Name
+----                -------------     ------ ----
+d----        24/06/2017     20:32            chocInstall
+Unable to set PowerShell to use TLS 1.2 and TLS 1.1 due to old .NET Framework i
+nstalled. If you see underlying connection closed or trust errors, you may need
+ to do one or more of the following: (1) upgrade to .NET Framework 4.5+ and Pow
+erShell v3, (2) specify internal Chocolatey package location (set $env:chocolat
+eyDownloadUrl prior to install or host the package internally), (3) use the Dow
+nload + PowerShell method of install. See https://chocolatey.org/install for al
+l install options.
+Getting latest version of the Chocolatey package for download.
+Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.7
 
-git v2.13.0 [Approved]
-git package files install completed. Performing other installation steps.
- The install of git was successful.
-  Software install location not explicitly set, could be in package or
-  default install location if installer.
+...
 
-Chocolatey installed 4/4 packages.
+Chocolatey installed 9/9 packages.
  See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
 
-C:\Windows\system32>
+Installed:
+ - chocolatey-core.extension v1.3.1
+ - conemu v17.6.22.0
+ - keepass.install v2.36
+ - 7zip v16.4.0.20170506
+ - keepass v2.36
+ - 7zip.install v16.4.0.20170506
+ - git.install v2.13.1.2
+ - curl v7.54.1
+ - git v2.13.1.2
 ```
 
-With these installed, cmd.exe can happily be discarded (for the vast majority of things). Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. There's a good range of pre-configured colour schemes to select from.
+Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
 
 ### Configure Bash Environment
 
@@ -91,7 +64,7 @@ cygwin@cygwin-PC MINGW64 ~
 $ chmod 0400 ~/.ssh/id_rsa
 ```
 
-We should now be able to clone my dotfiles repository using SSH:
+Now clone my dotfiles repository using SSH:
 ```
 cygwin@cygwin-PC MINGW64 ~
 $ mkdir dev && cd dev
