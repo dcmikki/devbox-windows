@@ -9,7 +9,7 @@ The goal is to get something on Windows that's a very decent approximation of my
 
 ### Install Environment
 
-First up, on the target machine, download the initial-bootstrap.bat file in this repository and save it to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
+First up, on the target machine, download the initial-bootstrap.bat and install-font.vbs files in this repository and save them to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
