@@ -79,8 +79,6 @@ With these installed, cmd.exe can happily be discarded (for the vast majority of
 
 ### Configure Bash Environment
 
-#### Git Setup
-
 Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
 ```
 cygwin@cygwin-PC MINGW64 ~
@@ -111,72 +109,33 @@ Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
 Resolving deltas: 100% (1435/1435), done.
 ```
 
-The .gitconfig should now be installed by linking it from the dotfiles repository to where msysgit expects it to be. The .githelpers file should also be installed in the same manner, and a wrapper script for using vimdiff on the terminal needs to go into `%USERPROFILE%\.local\bin`.
-
-Sadly, symlinks in Windows can only be made using cmd.exe. For some reason, the command `mklink` isn't an actual standalone program, but some kind of extension to cmd.exe. This seems kind of bizarre, since it also makes the command unavailable to things like Powershell, but hey ho. Even if you're creating the link in your own profile directory, it seems you still need to be Administrator to run this command, so run cmd.exe as Administrator.
+There's a bootstrap.bat file that can be run to create links to all the config files. Run it from cmd.exe as Administrator:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 
-C:\Windows\system32>cd c:\Users\cygwin
+C:\Windows\system32>cd c:\Users\cygwin\dev\dotfiles
 
-c:\Users\cygwin>mklink .gitconfig c:\Users\cygwin\dev\dotfiles\git\.gitconfig
-symbolic link created for .gitconfig <<===>> c:\Users\cygwin\dev\dotfiles\git\.gitconfig
+c:\Users\cygwin\dev\dotfiles>bootstrap.bat
 
-C:\Users\cygwin>mkdir -p .local\bin
+c:\Users\cygwin\dev\dotfiles>set dotfiles=C:\Users\cygwin\dev\dotfiles
 
-C:\Users\cygwin>cd .local\bin
+c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.local\bin mkdir -p C:\Users\cygwin\.local\bin
 
-c:\Users\cygwin\.local\bin>mklink git_diff_wrapper c:\Users\cygwin\dev\dotfiles\
-git\git_diff_wrapper
-symbolic link created for git_diff_wrapper <<===>> c:\Users\cygwin\dev\dotfiles\
-git\git_diff_wrapper
+c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.gitconfig mklink C:\Users\cygwin\.gitconfig C:\Users\cygwin\dev\dotfiles\git\.gitconfig
+symbolic link created for C:\Users\cygwin\.gitconfig <<===>> C:\Users\cygwin\dev\dotfiles\git\.gitconfig
 
-c:\Users\cygwin\.local\bin>cd ..\..
+c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.githelpers mklink C:\Users\cygwin\.githelpers C:\Users\cygwin\dev\dotfiles\git\.githelpers
+symbolic link created for C:\Users\cygwin\.githelpers <<===>> C:\Users\cygwin\dev\dotfiles\git\.githelpers
 
-c:\Users\cygwin>mklink .githelpers c:\Users\cygwin\dev\dotfiles\git\.githelpers
-symbolic link created for .githelpers <<===>> c:\Users\cygwin\dev\dotfiles\git\.
-githelpers
+c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.local\bin\git_diff_wrapper mklink C:\Users\cygwin\.local\bin\git_diff_wrapper C:\Users\cygwin\dev\dotfiles\git\git_diff_wrapper
+symbolic link created for C:\Users\cygwin\.local\bin\git_diff_wrapper <<===>> C:\Users\cygwin\dev\dotfiles\git\git_diff_wrapper
+
+c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.bashrc mklink C:\Users\cygwin\.bashrc C:\Users\cygwin\dev\dotfiles\bash\.bashrc
+symbolic link created for C:\Users\cygwin\.bashrc <<===>> C:\Users\cygwin\dev\dotfiles\bash\.bashrc
 ```
 
-Start a new instance of ConEmu and verify this is working as intended:
-```
-cygwin@cygwin-PC MINGW64 ~
-$ git config --list --show-origin
-file:"C:\\ProgramData/Git/config"       core.symlinks=false
-file:"C:\\ProgramData/Git/config"       core.autocrlf=true
-file:"C:\\ProgramData/Git/config"       core.fscache=true
-file:"C:\\ProgramData/Git/config"       color.diff=auto
-file:"C:\\ProgramData/Git/config"       color.status=auto
-file:"C:\\ProgramData/Git/config"       color.branch=auto
-file:"C:\\ProgramData/Git/config"       color.interactive=true
-file:"C:\\ProgramData/Git/config"       help.format=html
-file:"C:\\ProgramData/Git/config"       rebase.autosquash=true
-file:"C:\\Program Files\\Git\\mingw64/etc/gitconfig"    http.sslcainfo=C:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
-file:"C:\\Program Files\\Git\\mingw64/etc/gitconfig"    diff.astextplain.textconv=astextplain
-file:"C:\\Program Files\\Git\\mingw64/etc/gitconfig"    credential.helper=manager
-file:C:/Users/cygwin/.gitconfig user.name=Chris O'Neil
-file:C:/Users/cygwin/.gitconfig user.email=chris.oneil@gmail.com
-file:C:/Users/cygwin/.gitconfig diff.external=git_diff_wrapper
-file:C:/Users/cygwin/.gitconfig pager.diff=
-...
-```
-
-The output is truncated here, but clearly it's reading my custom settings.
-
-#### Bash Setup
-
-Similar to Git, it's simply a case of linking in the bashrc, which seems to be quite cross platform for now. So run cmd.exe as Administrator again, and link in the bashrc.
-```
-Microsoft Windows [Version 6.1.7601]
-Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
-
-C:\Windows\system32>cd c:\Users\cygwin
-
-c:\Users\cygwin>mklink .bashrc c:\Users\cygwin\dev\dotfiles\bash\.bashrc
-symbolic link created for .bashrc <<===>> c:\Users\cygwin\dev\dotfiles\bash\.bas
-hrc
-```
+Start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
 
 #### Font Setup
 
