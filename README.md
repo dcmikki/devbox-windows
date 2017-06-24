@@ -108,7 +108,9 @@ c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.bashrc mklink C:\User
 symbolic link created for C:\Users\cygwin\.bashrc <<===>> C:\Users\cygwin\dev\dotfiles\bash\.bashrc
 ```
 
-Start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
+Now the location containing msys-2.0.dll, usually `C:\Program Files\Git\usr\bin`, needs to be put on the system PATH.
+
+After that, start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
 
 ## Vim
 
