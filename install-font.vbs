@@ -1,0 +1,6 @@
+font_file_name = WScript.Arguments.Item(0)
+font_path = WScript.Arguments.Item(1)
+set objShell = CreateObject("Shell.Application")
+set objFolder = objShell.Namespace(font_path)
+set objFolderItem = objFolder.ParseName(font_file_name)
+objFolderItem.InvokeVerb("Install")
