@@ -114,12 +114,12 @@ After that, start a new instance of ConEmu and verify everything is linked corre
 
 ## Vim
 
-Vim is my main text editor. I went through a bit of an adventure trying to get a setup for Windows that was usuable. I originally thought my plugin setup would be quite transferrable, but that turned out not to be the case. I ended up abandoning my attempt to get YouCompleteMe to work on Windows. I decided it wasn't all that important anyway, as I wouldn't be doing any serious programming on Windows, only DevOps type stuff. I then thought I would just use everything except YouCompleteMe, but the performance in Vim in Git Bash was still terrible (I'm talking 10+ seconds just to open a file for editing).
+Vim is my main text editor. I went through a bit of an adventure trying to get a setup for Windows that was usuable. I originally thought my plugin setup would be quite transferrable, but that turned out not to be the case. I ended up abandoning my attempt to get YouCompleteMe to work on Windows. I decided it wasn't all that important anyway, as I wouldn't be doing any serious programming on Windows, only DevOps type stuff. Then I thought I'd just use everything except YouCompleteMe, but the performance in Vim in Git Bash was still terrible (I'm talking 10+ seconds just to open a file for editing).
 
 I've ended up with the following setup:
-* ConEmu running Git Bash with all the correct settings for 256 colours
+* ConEmu running Git Bash with settings for 256 colour support
 * The build of Vim that comes with Git Bash
-* The .vimrc linked from my dotfiles with some settings for 256 colours and essential plugins
+* The .vimrc linked from my dotfiles with settings for 256 colour support and essential plugins
 * The Windows build of Vim installed alongside the build that comes with Git Bash (good for 'Right Click -> Edit With Vim')
 * A .gvimrc linked from my dotfiles
 
