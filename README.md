@@ -114,14 +114,25 @@ After that, start a new instance of ConEmu and verify everything is linked corre
 
 ## Vim
 
-Vim is my main text editor. On my main development machines I run quite a lot of plugins, but they're all managed using Vundle, so it should be pretty easy to get all that installed on Windows. I was able to get it all running, but performance was really bad, to the point where it was unusable. I stopped loading a few plugins and ended up with a setup that would run on the version of Vim that comes with msysgit, but it still took about 5 - 10 seconds to open an instance, and it seemed to take forever to open new files too.
+Vim is my main text editor. I went through a bit of an adventure trying to get a setup for Windows that was usuable. I originally thought my plugin setup would be quite transferrable, but that turned out not to be the case. I ended up abandoning my attempt to get YouCompleteMe to work on Windows. I decided it wasn't all that important anyway, as I wouldn't be doing any serious programming on Windows, only DevOps type stuff. I then thought I would just use everything except YouCompleteMe, but the performance in Vim in Git Bash was still terrible (I'm talking 10+ seconds just to open a file for editing).
 
-With that said, I'm now going to produce a minimalist Vim setup that will keep it nice and snappy to be used with msysgit.
+I've ended up with the following setup:
+* ConEmu running Git Bash with all the correct settings for 256 colours
+* The build of Vim that comes with Git Bash
+* The .vimrc linked from my dotfiles with some settings for 256 colours and essential plugins
+* The Windows build of Vim installed alongside the build that comes with Git Bash (good for 'Right Click -> Edit With Vim')
+* A .gvimrc linked from my dotfiles
 
-The first thing to do is get Vundle setup:
+The Windows and Git bash builds seem to be able to sit alongside each other just fine.
+
+### Setup
+
+Most of the setup is done during the bootstrap. The only thing to do before that is to setup Vundle and create the directories the vimrc specifies to use for backups:
 ```
 cygwin@cygwin-PC » ~/dev $ cd ~
 cygwin@cygwin-PC » ~ $ mkdir -p .vim/bundle
+cygwin@cygwin-PC » ~ $ mkdir .vim/backup
+cygwin@cygwin-PC » ~ $ mkdir .vim/tmp
 cygwin@cygwin-PC » ~ $ cd .vim/bundle/
 cygwin@cygwin-PC » ~/.vim/bundle $ git clone https://github.com/VundleVim/Vundle.vim.git
 Cloning into 'Vundle.vim'...
@@ -130,3 +141,5 @@ Receiving objects:  79% (2472/3128), 852.01 KiB | 191.00 KiB/s   28eceiving obje
 Receiving objects: 100% (3128/3128), 931.67 KiB | 196.00 KiB/s, done.
 Resolving deltas: 100% (1101/1101), done.
 ```
+
+After that just run `vi +PluginInstall +qall` from the Bash prompt and all the plugins will be installed using Vundle.
