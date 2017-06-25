@@ -123,7 +123,7 @@ I've ended up with the following setup:
 * The Windows build of Vim installed alongside the build that comes with Git Bash (good for 'Right Click -> Edit With Vim')
 * A .gvimrc linked from my dotfiles
 
-The Windows and Git bash builds seem to be able to sit alongside each other just fine.
+The Windows and Git Bash builds seem to be able to sit alongside each other just fine.
 
 ### Setup
 
