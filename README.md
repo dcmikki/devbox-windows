@@ -11,7 +11,7 @@ The goal is to get something on Windows that's a very decent approximation of my
 
 At present, unfortunately MSYS2 doesn't have an unattended installer. There is a [Chocolately package](https://chocolatey.org/packages/msys2), but it only extracts an archive, it doesn't do a proper install with shortcuts to the console and so on. Actually, in any case, it doesn't even run through installing that package without errors, so it's not a great option anyway.
 
-That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. After installation, run MSYS2 and do a `pacman -Syu` to update the system. That command will instruct you to restart MSYS2. Do so, then run `pacman -Su` to resume updating the system.
+That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. After installation, run MSYS2 and do a `pacman -Syu` to update the system. That command will instruct you to restart MSYS2. Do so, then run `pacman -Su` to resume and complete updating the system.
 
 ### Run Bootstrap
 
@@ -24,60 +24,33 @@ C:\Windows\system32>cd %USERPROFILE%
 
 c:\Users\cygwin>initial-bootstrap.bat
 
-Mode                LastWriteTime     Length Name
-----                -------------     ------ ----
-d----        24/06/2017     20:32            chocInstall
-Unable to set PowerShell to use TLS 1.2 and TLS 1.1 due to old .NET Framework i
-nstalled. If you see underlying connection closed or trust errors, you may need
- to do one or more of the following: (1) upgrade to .NET Framework 4.5+ and Pow
-erShell v3, (2) specify internal Chocolatey package location (set $env:chocolat
-eyDownloadUrl prior to install or host the package internally), (3) use the Dow
-nload + PowerShell method of install. See https://chocolatey.org/install for al
-l install options.
-Getting latest version of the Chocolatey package for download.
-Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.7
-
-...
-
-Chocolatey installed 9/9 packages.
- See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-
-Installed:
- - chocolatey-core.extension v1.3.1
- - conemu v17.6.22.0
- - keepass.install v2.36
- - 7zip v16.4.0.20170506
- - keepass v2.36
- - 7zip.install v16.4.0.20170506
- - git.install v2.13.1.2
- - curl v7.54.1
- - git v2.13.1.2
+This will use chocolately to install various packages, the terminal connector for ConEmu (used for getting 256 colours to work correctly) and the Source Code Pro patched font.
 ```
 
 ### Install Environment
 
-Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
+Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Msys2-64}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
 
 ### Configure Bash Environment
 
 Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
 ```
-cygwin@cygwin-PC MINGW64 ~
+cygwin@cygwin-PC MSYS ~
 $ mkdir .ssh
 
-cygwin@cygwin-PC MINGW64 ~
+cygwin@cygwin-PC MSYS ~
 $ cp /E/.ssh/id_rsa .ssh
 
-cygwin@cygwin-PC MINGW64 ~
+cygwin@cygwin-PC MSYS ~
 $ chmod 0400 ~/.ssh/id_rsa
 ```
 
 Now clone my dotfiles repository using SSH:
 ```
-cygwin@cygwin-PC MINGW64 ~
+cygwin@cygwin-PC MSYS ~
 $ mkdir dev && cd dev
 
-cygwin@cygwin-PC MINGW64 ~/dev
+cygwin@cygwin-PC MSYS ~/dev
 $ git clone git@github.com:jacderida/dotfiles.git
 Cloning into 'dotfiles'...
 The authenticity of host 'github.com (192.30.253.112)' can't be established.
@@ -90,7 +63,7 @@ Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
 Resolving deltas: 100% (1435/1435), done.
 ```
 
-There's a bootstrap.bat file that can be run to create links to all the config files. Run it from cmd.exe as Administrator:
+There's a bootstrap.bat file that can be run to create links to all the config files. Run it from cmd.exe as Administrator (output should be something similar):
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
