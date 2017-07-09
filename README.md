@@ -11,7 +11,7 @@ The goal is to get something on Windows that's a very decent approximation of my
 
 At present, unfortunately MSYS2 doesn't have an unattended installer. There is a [Chocolately package](https://chocolatey.org/packages/msys2), but it only extracts an archive, it doesn't do a proper install with shortcuts to the console and so on. Actually, in any case, it doesn't even run through installing that package without errors, so it's not a great option anyway.
 
-That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. After installation, run MSYS2 and do a `pacman -Syu` to update the system. That command will instruct you to restart MSYS2. Do so, then run `pacman -Su` to resume and complete updating the system.
+That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. After installation, run MSYS2 and do a `pacman -Syu` to update the system. That command will instruct you to restart MSYS2. Do so, then run `pacman -Su` to resume and complete updating the system. Once complete, install Git with `pacman -S git`. Installing git actually also installs the `vim` package, I guess because it also wants to use that as the default editor.
 
 ### Run Bootstrap
 
