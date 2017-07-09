@@ -5,7 +5,7 @@ I'll occasionally have to use Windows for projects at work, so I also want a Win
 
 The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects. The best option otherwise is running [MSYS2](http://www.msys2.org). This is superior to Git Bash just because it comes with a package manager you can use to easily install any additional packages needed at any point in the future.
 
-## Setup
+## Setup Environment
 
 ### MSYS2
 
@@ -210,13 +210,13 @@ The script won't produce any output, as it's just creating symlinks. After that,
 
 ## Vim
 
-Vim is my main text editor. I went through a bit of an adventure trying to get a setup for Windows that was usuable. I originally thought my plugin setup would be quite transferrable, but that turned out not to be the case. I ended up abandoning my attempt to get YouCompleteMe to work on Windows. I decided it wasn't all that important anyway, as I wouldn't be doing any serious programming on Windows, only DevOps type stuff. Then I thought I'd just use everything except YouCompleteMe, but the performance in Vim in Git Bash was still terrible (I'm talking 10+ seconds just to open a file for editing).
+Vim is my main text editor. I went through a bit of an adventure trying to get a setup for Windows that was usuable. I originally thought my plugin setup would be quite transferrable, but that turned out not to be the case. I ended up abandoning my attempt to get YouCompleteMe to work on Windows. I decided it wasn't all that important anyway, as I wouldn't be doing any serious programming on Windows, only DevOps type stuff. Then I thought I'd just use everything except YouCompleteMe, but the performance in Vim in MSYS2 and Git Bash was still terrible (I'm talking 10+ seconds just to open a file for editing).
 
 I've ended up with the following setup:
 * ConEmu running MSYS2 with settings for 256 colour support
 * The build of Vim that's installed with pacman in MSYS2
-* The .vimrc linked from my dotfiles with settings for 256 colour support and essential plugins
-* The Windows build of Vim installed alongside the build that comes with Git Bash (good for 'Right Click -> Edit With Vim')
+* The minimalist .vimrc linked from my dotfiles with settings for 256 colour support and essential plugins
+* The Windows build of Vim installed alongside the build that comes with MSYS2 (good for 'Right Click -> Edit With Vim')
 
 The Windows and MSYS2 builds can sit alongside each other, but I haven't quite worked out yet how to get the same configuration working with the Windows build. Linking the same files to `%USERPROFILE%\_vimrc` and `%USERPROFILE%\_gvimrc` doesn't work correctly. I suspect it's because the Vim runtime path needs updated with the Vundle directory, but it's not a big deal for now, as my main editor is the terminal Vim.
 
