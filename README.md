@@ -164,11 +164,9 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 C:\Users\cygwin>
 ```
 
-### Install Environment
+### Configure Bash Environment
 
 Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Msys2-64}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
-
-### Configure Bash Environment
 
 Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
 ```
