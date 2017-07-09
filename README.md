@@ -63,33 +63,9 @@ Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
 Resolving deltas: 100% (1435/1435), done.
 ```
 
-There's a bootstrap.bat file that can be run to create links to all the config files. Run it from cmd.exe as Administrator (output should be something similar):
+Now run the bootstrap-msys2.sh file:
 ```
-Microsoft Windows [Version 6.1.7601]
-Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
-
-C:\Windows\system32>cd c:\Users\cygwin\dev\dotfiles
-
-c:\Users\cygwin\dev\dotfiles>bootstrap.bat
-
-c:\Users\cygwin\dev\dotfiles>set dotfiles=C:\Users\cygwin\dev\dotfiles
-
-c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.local\bin mkdir -p C:\Users\cygwin\.local\bin
-
-c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.gitconfig mklink C:\Users\cygwin\.gitconfig C:\Users\cygwin\dev\dotfiles\git\.gitconfig
-symbolic link created for C:\Users\cygwin\.gitconfig <<===>> C:\Users\cygwin\dev\dotfiles\git\.gitconfig
-
-c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.githelpers mklink C:\Users\cygwin\.githelpers C:\Users\cygwin\dev\dotfiles\git\.githelpers
-symbolic link created for C:\Users\cygwin\.githelpers <<===>> C:\Users\cygwin\dev\dotfiles\git\.githelpers
-
-c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.local\bin\git_diff_wrapper mklink C:\Users\cygwin\.local\bin\git_diff_wrapper C:\Users\cygwin\dev\dotfiles\git\git_diff_wrapper
-symbolic link created for C:\Users\cygwin\.local\bin\git_diff_wrapper <<===>> C:\Users\cygwin\dev\dotfiles\git\git_diff_wrapper
-
-c:\Users\cygwin\dev\dotfiles>if not exist C:\Users\cygwin\.bashrc mklink C:\Users\cygwin\.bashrc C:\Users\cygwin\dev\dotfiles\bash\.bashrc
-symbolic link created for C:\Users\cygwin\.bashrc <<===>> C:\Users\cygwin\dev\dotfiles\bash\.bashrc
 ```
-
-Now the location containing msys-2.0.dll, usually `C:\Program Files\Git\usr\bin`, needs to be put on the system PATH.
 
 After that, start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
 
@@ -104,7 +80,7 @@ I've ended up with the following setup:
 * The Windows build of Vim installed alongside the build that comes with Git Bash (good for 'Right Click -> Edit With Vim')
 * A .gvimrc linked from my dotfiles
 
-The Windows and Git Bash builds seem to be able to sit alongside each other just fine.
+The Windows and MSYS2 builds seem to be able to sit alongside each other just fine.
 
 ### Setup
 
