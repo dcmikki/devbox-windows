@@ -22,299 +22,6 @@ Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
 
 C:\Windows\system32>cd %USERPROFILE%
 
-c:\Users\cygwin>initial-bootstrap.bat
-
-This will use chocolately to install various packages, the terminal connector for ConEmu (used for getting 256 colours to work correctly) and the Source Code Pro patched font.
-```
-
-### Install Environment
-
-Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Msys2-64}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
-
-### Configure Bash Environment
-
-Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
-```
-cygwin@cygwin-PC MSYS ~
-$ mkdir .ssh
-
-cygwin@cygwin-PC MSYS ~
-$ cp /E/.ssh/id_rsa .ssh
-
-cygwin@cygwin-PC MSYS ~
-$ chmod 0400 ~/.ssh/id_rsa
-```
-
-Now clone my dotfiles repository using SSH:
-```
-cygwin@cygwin-PC MSYS ~
-$ mkdir dev && cd dev
-
-cygwin@cygwin-PC MSYS ~/dev
-$ git clone git@github.com:jacderida/dotfiles.git
-Cloning into 'dotfiles'...
-The authenticity of host 'github.com (192.30.253.112)' can't be established.
-RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
-Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
-remote: Counting objects: 2410, done.
-Receiving objects:  88% (2121/2410), 2.65 MiB | 555.00 KiB/s   2410eceiving objects:  86% (2073/2410), 2.65 MiB | 555.00 KiB/s
-Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
-Resolving deltas: 100% (1435/1435), done.
-```
-
-Now run the bootstrap-msys2.sh file:
-```
-Microsoft Windows [Version 6.1.7601]
-Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
-
-C:\Windows\system32>cd %USERPROFILE%
-
-C:\Users\cygwin>initial-bootstrap.bat
-
-C:\Users\cygwin>set choco_install_path="C:\ProgramData\chocolatey\bin"
-
-C:\Users\cygwin>set msys2_install_path="C:\msys64"
-
-C:\Users\cygwin>set terminal_connector_path="C:\msys64\conemu-msys2-64.exe"
-
-C:\Users\cygwin>set font_path="C:\Users\cygwin\fonts"
-
-C:\Users\cygwin>set source_code_pro_font_path="C:\Users\cygwin\fonts\Sauce Code
-Pro Semibold Nerd Font Complete Mono Windows Compatible.ttf"
-
-C:\Users\cygwin>set source_code_pro_font_name="Sauce Code Pro Semibold Nerd Font
- Complete Mono Windows Compatible.ttf"
-
-C:\Users\cygwin>set source_code_pro_font_url="https://github.com/ryanoasis/nerd-
-fonts/raw/master/patched-fonts/SourceCodePro/Semibold/complete/Sauce%20Code%20Pr
-o%20Semibold%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
-
-C:\Users\cygwin>if not exist "C:\ProgramData\chocolatey\bin" ()
-
-Mode                LastWriteTime     Length Name
-----                -------------     ------ ----
-d----        09/07/2017     21:15            chocInstall
-Unable to set PowerShell to use TLS 1.2 and TLS 1.1 due to old .NET Framework i
-nstalled. If you see underlying connection closed or trust errors, you may need
- to do one or more of the following: (1) upgrade to .NET Framework 4.5+ and Pow
-erShell v3, (2) specify internal Chocolatey package location (set $env:chocolat
-eyDownloadUrl prior to install or host the package internally), (3) use the Dow
-nload + PowerShell method of install. See https://chocolatey.org/install for al
-l install options.
-Getting latest version of the Chocolatey package for download.
-Getting Chocolatey from https://chocolatey.org/api/v2/package/chocolatey/0.10.7
-.
-Downloading 7-Zip commandline tool prior to extraction.
-Extracting C:\Users\cygwin\AppData\Local\Temp\chocolatey\chocInstall\chocolatey
-.zip to C:\Users\cygwin\AppData\Local\Temp\chocolatey\chocInstall...
-Installing chocolatey on this machine
-Creating ChocolateyInstall as an environment variable (targeting 'Machine')
-  Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
-WARNING: It's very likely you will need to close and reopen your shell
-  before you can use choco.
-Restricting write permissions to Administrators
-We are setting up the Chocolatey package repository.
-The packages themselves go to 'C:\ProgramData\chocolatey\lib'
-  (i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
-A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
-  and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName
-'.
-
-Creating Chocolatey folders if they do not already exist.
-
-WARNING: You can safely ignore errors related to missing log files when
-  upgrading from a version of Chocolatey less than 0.9.9.
-  'Batch file could not be found' is also safe to ignore.
-  'The system cannot find the file specified' - also safe.
-chocolatey.nupkg file not installed in lib.
- Attempting to locate it from bootstrapper.
-PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Add
-ing...
-WARNING: Not setting tab completion: Profile file does not exist at
-'C:\Users\cygwin\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1'.
-Chocolatey (choco.exe) is now ready.
-You can call choco from anywhere, command line or powershell by typing choco.
-Run choco /? for a list of functions.
-You may need to shut down and restart powershell and/or consoles
- first prior to using choco.
-Ensuring chocolatey commands are on the path
-Ensuring chocolatey.nupkg is in the lib folder
-
-
-
-C:\Users\cygwin>choco install -y 7zip conemu curl keepass vim
-Chocolatey v0.10.7
-Installing the following packages:
-7zip;conemu;curl;keepass;vim
-By installing you accept licenses for the packages.
-Progress: Downloading 7zip.install 16.4.0.20170506... 100%
-Progress: Downloading chocolatey-core.extension 1.3.1... 100%
-Progress: Downloading 7zip 16.4.0.20170506... 100%
-
-chocolatey-core.extension v1.3.1 [Approved]
-chocolatey-core.extension package files install completed. Performing other inst
-allation steps.
- Installed/updated chocolatey-core extensions.
- The install of chocolatey-core.extension was successful.
-  Software installed to 'C:\ProgramData\chocolatey\extensions\chocolatey-core'
-
-7zip.install v16.4.0.20170506 [Approved]
-7zip.install package files install completed. Performing other installation step
-s.
-Installing 64 bit version
-Installing 7zip.install...
-7zip.install has been installed.
-7zip installed to 'C:\Program Files\7-Zip'
-Added C:\ProgramData\chocolatey\bin\7z.exe shim pointed to 'c:\program files\7-z
-ip\7z.exe'.
-  7zip.install may be able to be automatically uninstalled.
- The install of 7zip.install was successful.
-  Software installed to 'C:\Program Files\7-Zip\'
-
-7zip v16.4.0.20170506 [Approved]
-7zip package files install completed. Performing other installation steps.
- The install of 7zip was successful.
-  Software install location not explicitly set, could be in package or
-  default install location if installer.
-Progress: Downloading ConEmu 17.7.5.0... 100%
-
-ConEmu v17.7.5.0 [Approved]
-conemu package files install completed. Performing other installation steps.
-Downloading ConEmu 64 bit
-  from 'https://github.com/Maximus5/ConEmu/releases/download/v17.07.05/ConEmuSet
-up.170705.exe'
-Progress: 100% - Completed download of C:\Users\cygwin\AppData\Local\Temp\chocol
-atey\ConEmu\17.7.5.0\ConEmuSetup.170705.exe (5.14 MB).
-Download of ConEmuSetup.170705.exe (5.14 MB) completed.
-Hashes match.
-Installing ConEmu...
-ConEmu has been installed.
-  conemu may be able to be automatically uninstalled.
- The install of conemu was successful.
-  Software installed as 'exe', install location is likely default.
-Progress: Downloading curl 7.54.1... 100%
-
-curl v7.54.1 [Approved]
-curl package files install completed. Performing other installation steps.
-Installing 64 bit version
- ShimGen has successfully created a shim for curl.exe
- The install of curl was successful.
-  Software install location not explicitly set, could be in package or
-  default install location if installer.
-Progress: Downloading keepass.install 2.36... 100%
-Progress: Downloading keepass 2.36... 100%
-
-keepass.install v2.36 [Approved]
-keepass.install package files install completed. Performing other installation s
-teps.
-Downloading keepass.install
-  from 'https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.36/KeePas
-s-2.36-Setup.exe/download'
-Progress: 100% - Completed download of C:\Users\cygwin\AppData\Local\Temp\chocol
-atey\keepass.install\2.36\KeePass-2.36-Setup.exe (3.07 MB).
-Download of KeePass-2.36-Setup.exe (3.07 MB) completed.
-Hashes match.
-Installing keepass.install...
-keepass.install has been installed.
-  keepass.install can be automatically uninstalled.
- The install of keepass.install was successful.
-  Software installed to 'C:\Program Files (x86)\KeePass Password Safe 2\'
-
-keepass v2.36 [Approved]
-keepass package files install completed. Performing other installation steps.
- The install of keepass was successful.
-  Software install location not explicitly set, could be in package or
-  default install location if installer.
-Progress: Downloading vim 8.0.604... 100%
-
-vim v8.0.604 [Approved]
-vim package files install completed. Performing other installation steps.
-Downloading vim
-  from 'https://sourceforge.net/projects/cream/files/Vim/8.0.604/gvim-8-0-604.ex
-e/download'
-Progress: 100% - Completed download of C:\Users\cygwin\AppData\Local\Temp\chocol
-atey\vim\8.0.604\gvim-8-0-604.exe (9.22 MB).
-Download of gvim-8-0-604.exe (9.22 MB) completed.
-Installing vim...
-vim has been installed.
-Adding the vim installation directory to PATH .
-PATH environment variable does not have C:\Program Files (x86)\vim\vim80 in it.
-Adding...
-  vim may be able to be automatically uninstalled.
-Environment Vars (like PATH) have changed. Close/reopen your shell to
- see the changes (or in powershell/cmd.exe just type `refreshenv`).
- The install of vim was successful.
-  Software installed as 'exe', install location is likely default.
-
-Chocolatey installed 8/8 packages.
- See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).
-
-Installed:
- - chocolatey-core.extension v1.3.1
- - conemu v17.7.5.0
- - keepass.install v2.36
- - 7zip v16.4.0.20170506
- - keepass v2.36
- - 7zip.install v16.4.0.20170506
- - vim v8.0.604
- - curl v7.54.1
-
-C:\Users\cygwin>if not exist "C:\msys64\conemu-msys2-64.exe" (
-curl -k -L --output connector.7z https://github.com/Maximus5/cygwin-connector/re
-leases/download/v0.7.4/terminals.v0.7.4.7z
- 7z e connector.7z -o"C:\msys64" conemu-msys2-64.exe -r
- del connector.7z
-)
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   609    0   609    0     0   1053      0 --:--:-- --:--:-- --:--:--  1053
-100 35973  100 35973    0     0  26470      0  0:00:01  0:00:01 --:--:-- 95928
-
-7-Zip [64] 16.04 : Copyright (c) 1999-2016 Igor Pavlov : 2016-10-04
-
-Scanning the drive for archives:
-1 file, 35973 bytes (36 KiB)
-
-Extracting archive: connector.7z
---
-Path = connector.7z
-Type = 7z
-Physical Size = 35973
-Headers Size = 308
-Method = LZMA:192k BCJ
-Solid = +
-Blocks = 2
-
-Everything is Ok
-
-Files: 5
-Size:       152760
-Compressed: 35973
-
-C:\Users\cygwin>if not exist C:\Users\cygwin\fonts mkdir C:\Users\cygwin\fonts
-
-C:\Users\cygwin>if not exist "C:\Users\cygwin\fonts\Sauce Code Pro Semibold Nerd
- Font Complete Mono Windows Compatible.ttf" (
-curl -k -L --output "C:\Users\cygwin\fonts\Sauce Code Pro Semibold Nerd Font Com
-plete Mono Windows Compatible.ttf" "https://github.com/ryanoasis/nerd-fonts/raw/
-master/patched-fonts/SourceCodePro/Semibold/complete/Sauce%20Code%20Pro%20Semibo
-ld%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf"
- call cscript install-font.vbs "Sauce Code Pro Semibold Nerd Font Complete Mono
-Windows Compatible.ttf" "C:\Users\cygwin\fonts"
-)
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100   262  100   262    0     0    389      0 --:--:-- --:--:-- --:--:--   389
-100  570k  100  570k    0     0   376k      0  0:00:01  0:00:01 --:--:--  960k
-Microsoft (R) Windows Script Host Version 5.8
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-Microsoft Windows [Version 6.1.7601]
-Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
-
-C:\Windows\system32>cd %USERPROFILE%
-
 C:\Users\cygwin>initial-bootstrap.bat
 
 C:\Users\cygwin>set choco_install_path="C:\ProgramData\chocolatey\bin"
@@ -456,6 +163,44 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 
 C:\Users\cygwin>
 ```
+
+### Install Environment
+
+Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Msys2-64}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
+
+### Configure Bash Environment
+
+Now that ConEmu is running the Bash shell, it will normally load things like .bashrc and .bash_profile, so these can be supplied from my dotfiles repository. First, to clone with SSH, I'll need to get a copy of my private key onto the machine. For now I'm running this setup on a VM, so I've made my key available via a shared folder. At some point I'm going to create some kind of script that pulls the keys from somewhere (maybe on a USB stick or something), but for now, the step is just something like this:
+```
+cygwin@cygwin-PC MSYS ~
+$ mkdir .ssh
+
+cygwin@cygwin-PC MSYS ~
+$ cp /E/.ssh/id_rsa .ssh
+
+cygwin@cygwin-PC MSYS ~
+$ chmod 0400 ~/.ssh/id_rsa
+```
+
+Now clone my dotfiles repository using SSH:
+```
+cygwin@cygwin-PC MSYS ~
+$ mkdir dev && cd dev
+
+cygwin@cygwin-PC MSYS ~/dev
+$ git clone git@github.com:jacderida/dotfiles.git
+Cloning into 'dotfiles'...
+The authenticity of host 'github.com (192.30.253.112)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,192.30.253.112' (RSA) to the list of known hosts.
+remote: Counting objects: 2410, done.
+Receiving objects:  88% (2121/2410), 2.65 MiB | 555.00 KiB/s   2410eceiving objects:  86% (2073/2410), 2.65 MiB | 555.00 KiB/s
+Receiving objects: 100% (2410/2410), 3.04 MiB | 588.00 KiB/s, done.
+Resolving deltas: 100% (1435/1435), done.
+```
+
+Now run the bootstrap-msys2.sh file:
 
 After that, start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
 
