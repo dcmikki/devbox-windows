@@ -3,11 +3,17 @@ Intended to define my personal development environment for Windows.
 
 I'll occasionally have to use Windows for projects at work, so I also want a Windows machine with some dev tools and customisations. This setup may be completely automated with something in the future, but for now it's a few batch files that need to be run in a certain order.
 
-The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects. The best option otherwise is to get a nice Git Bash setup running.
+The goal is to get something on Windows that's a very decent approximation of my Linux shell setup. This could probably be achieved best with the new 'Bash for Windows' feature in Windows 10, but sadly I still need to work with Windows 7 for some projects. The best option otherwise is running [MSYS2](http://www.msys2.org). This is superior to Git Bash just because it comes with a package manager you can use to easily install any additional packages needed at any point in the future.
 
-## Git Bash for Windows Setup
+## Setup
 
-### Install Environment
+### MSYS2
+
+At present, unfortunately MSYS2 doesn't have an unattended installer. There is a [Chocolately package](https://chocolatey.org/packages/msys2), but it only extracts an archive, it doesn't do a proper install with shortcuts to the console and so on. Actually, in any case, it doesn't even run through installing that package without errors, so it's not a great option anyway.
+
+That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. This should be one of the few manual steps.
+
+### Run Bootstrap
 
 First up, on the target machine, download the initial-bootstrap.bat and install-font.vbs files in this repository and save them to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
 ```
@@ -47,6 +53,8 @@ Installed:
  - curl v7.54.1
  - git v2.13.1.2
 ```
+
+### Install Environment
 
 Start up ConEmu. On first boot, it will give you an opportunity to configure some options, including a startup task; choose the `{Bash::Git bash}` option. For now this is all that's needed, as the settings file for ConEmu will be configured during the dotfiles bootstrap.
 
