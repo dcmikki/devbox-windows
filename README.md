@@ -11,11 +11,11 @@ The goal is to get something on Windows that's a very decent approximation of my
 
 At present, unfortunately MSYS2 doesn't have an unattended installer. There is a [Chocolately package](https://chocolatey.org/packages/msys2), but it only extracts an archive, it doesn't do a proper install with shortcuts to the console and so on. Actually, in any case, it doesn't even run through installing that package without errors, so it's not a great option anyway.
 
-That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. This should be one of the few manual steps.
+That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20161025.exe) and run it. After installation, run MSYS2 and do a `pacman -Syu` to update the system. That command will instruct you to restart MSYS2. Do so, then run `pacman -Su` to resume updating the system.
 
 ### Run Bootstrap
 
-First up, on the target machine, download the initial-bootstrap.bat and install-font.vbs files in this repository and save them to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
+On the target machine, download the initial-bootstrap.bat and install-font.vbs files in this repository and save them to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
