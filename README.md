@@ -15,7 +15,7 @@ That said, download the [MSYS2 installer](http://repo.msys2.org/distrib/x86_64/m
 
 ### Run Bootstrap
 
-On the target machine, download the initial-bootstrap.bat and install-font.vbs files in this repository and save them to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script:
+On the target machine, download the initial-bootstrap.bat and install-font.vbs files in this repository and save them to your user profile directory at `%USERPROFILE%`. Then run cmd.exe as Administrator and run that script (the output should be similar):
 ```
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
@@ -201,21 +201,24 @@ Resolving deltas: 100% (1435/1435), done.
 ```
 
 Now run the bootstrap-msys2.sh file:
+```
+cygwin@cygwin-PC MSYS ~/dev/dotfiles
+$ ./bootstrap-msys2.sh
+```
 
-After that, start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
+The script won't produce any output, as it's just creating symlinks. After that, start a new instance of ConEmu and verify everything is linked correctly. If correct, the .bashrc should be loaded with no problems and the correct prompt should be visible.
 
 ## Vim
 
 Vim is my main text editor. I went through a bit of an adventure trying to get a setup for Windows that was usuable. I originally thought my plugin setup would be quite transferrable, but that turned out not to be the case. I ended up abandoning my attempt to get YouCompleteMe to work on Windows. I decided it wasn't all that important anyway, as I wouldn't be doing any serious programming on Windows, only DevOps type stuff. Then I thought I'd just use everything except YouCompleteMe, but the performance in Vim in Git Bash was still terrible (I'm talking 10+ seconds just to open a file for editing).
 
 I've ended up with the following setup:
-* ConEmu running Git Bash with settings for 256 colour support
-* The build of Vim that comes with Git Bash
+* ConEmu running MSYS2 with settings for 256 colour support
+* The build of Vim that's installed with pacman in MSYS2
 * The .vimrc linked from my dotfiles with settings for 256 colour support and essential plugins
 * The Windows build of Vim installed alongside the build that comes with Git Bash (good for 'Right Click -> Edit With Vim')
-* A .gvimrc linked from my dotfiles
 
-The Windows and MSYS2 builds seem to be able to sit alongside each other just fine.
+The Windows and MSYS2 builds can sit alongside each other, but I haven't quite worked out yet how to get the same configuration working with the Windows build. Linking the same files to `%USERPROFILE%\_vimrc` and `%USERPROFILE%\_gvimrc` doesn't work correctly. I suspect it's because the Vim runtime path needs updated with the Vundle directory, but it's not a big deal for now, as my main editor is the terminal Vim.
 
 ### Setup
 
