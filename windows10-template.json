@@ -1,0 +1,66 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": "{{user `headless`}}",
+      "boot_wait": "2m",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_timeout": "2h",
+      "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c \"Packer Shutdown\"",
+      "guest_os_type": "Windows10_64",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "./scripts/box-provision/fixnetwork.ps1",
+        "./scripts/box-provision/openssh.ps1"
+      ],
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{user `memory_size`}}"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{user `cpus`}}"
+        ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c C:/Windows/Temp/script.bat",
+      "scripts": [
+        "./scripts/box-provision/vm-guest-tools.bat",
+        "./scripts/box-provision/vagrant-ssh.bat",
+        "./scripts/box-provision/disable-auto-logon.bat"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_10_enterprise_eval_{{ .Provider}}.box"
+    }
+  ],
+  "variables": {
+    "iso_url": "16299.15.170928-1534.rs3_release_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-gb.iso",
+    "iso_checksum_type": "sha1",
+    "iso_checksum": "499de831d07af49162da779f7d0b72ff4098128d",
+    "autounattend": "Autounattend.xml",
+    "headless": "false",
+    "cpus": "2",
+    "memory_size": "2048",
+    "disk_size": "61440"
+  }
+}
